@@ -1,0 +1,151 @@
+{
+    "info": {
+        "name": "선박 도장 품질 측정 데이터",
+        "url": "miraeit.net/",
+        "description": "선박 도장 품질 측정 데이터",
+        "version": "1.0",
+        "contributor": "미래아이티컨소시엄",
+        "date_created": "2022-12-08"
+    },
+    "images": [
+        {
+            "id": 1,
+            "file_name": "206_16_fabbd6d7-b655-443f-a8a5-be2c0587d6c2.jpg",
+            "width": 4032,
+            "height": 3024,
+            "license": 1,
+            "date_captured": "2022-11-26 14:52:48"
+        }
+    ],
+    "licenses": [
+        {
+            "id": 1,
+            "name": "CC BY-NC",
+            "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/"
+        }
+    ],
+    "categories": [
+        {
+            "supercategory": "선박도장",
+            "id": 101,
+            "name": "정상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 201,
+            "name": "워터스포팅"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 202,
+            "name": "흐름"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 203,
+            "name": "도막분리"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 204,
+            "name": "핀홀"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 205,
+            "name": "균열"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 206,
+            "name": "부풀음"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 207,
+            "name": "이물질포함"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 301,
+            "name": "용접손상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 302,
+            "name": "스크래치"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 303,
+            "name": "도막떨어짐"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 206,
+            "attributes": {
+                "part": "탱크",
+                "quality": "불량품"
+            },
+            "iscrowd": 0,
+            "area": 2210648.07,
+            "segmentation": [
+                1032.0,
+                1110.0,
+                955.7,
+                1328.7,
+                955.7,
+                1512.7,
+                1014.7,
+                1734.9,
+                1143.1,
+                1915.4,
+                1431.3,
+                2123.7,
+                1677.8,
+                2186.2,
+                1927.8,
+                2217.5,
+                2181.2,
+                2179.3,
+                2382.6,
+                2082.1,
+                2538.8,
+                1964.0,
+                2684.7,
+                1790.4,
+                2740.2,
+                1575.2,
+                2754.1,
+                1373.8,
+                2705.5,
+                1175.9,
+                2601.3,
+                971.1,
+                2455.5,
+                825.3,
+                2247.2,
+                721.1,
+                1962.5,
+                651.7,
+                1754.2,
+                651.7,
+                1521.6,
+                714.2,
+                1320.2,
+                804.4,
+                1146.6,
+                957.2
+            ],
+            "bbox": [
+                955.7,
+                651.7,
+                1798.4,
+                1565.8
+            ]
+        }
+    ]
+}

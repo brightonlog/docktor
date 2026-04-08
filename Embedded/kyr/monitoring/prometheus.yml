@@ -1,0 +1,39 @@
+# Prometheus 설정 파일
+global:
+  scrape_interval: 5s  # 5초마다 메트릭 수집
+  evaluation_interval: 5s
+  external_labels:
+    monitor: 'jetson-orin-nano'
+
+# Alertmanager 설정 (선택사항)
+# alerting:
+#   alertmanagers:
+#     - static_configs:
+#         - targets: ['alertmanager:9093']
+
+# 메트릭 수집 대상 설정
+scrape_configs:
+  # Prometheus 자체 모니터링
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Jetson GPU/CPU 메트릭
+  - job_name: 'jetson-gpu'
+    static_configs:
+      - targets: ['JETSON_IP:9100']  # Jetson의 IP로 변경 필요
+        labels:
+          device: 'jetson-orin-nano'
+          location: 'main'
+
+  # Flask 애플리케이션 메트릭 (선택사항)
+  - job_name: 'flask-detection'
+    metrics_path: '/stats'
+    static_configs:
+      - targets: ['JETSON_IP:5000']  # Jetson의 IP로 변경 필요
+        labels:
+          app: 'object-detection'
+
+# 규칙 파일 (알림 규칙 등)
+# rule_files:
+#   - 'alert_rules.yml'

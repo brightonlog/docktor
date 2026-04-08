@@ -1,0 +1,103 @@
+plugins {
+    id 'groovy'
+    id 'org.springframework.boot' version '3.4.2'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.ssafy'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+}
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src/main/groovy']
+        }
+    }
+}
+
+springBoot {
+    mainClass = 'com.ssafy.docktor.DocktorApplication'
+}
+
+repositories {
+    mavenCentral()
+    // 이 줄을 추가해야 Spring API를 찾는다
+    // Spring MileStone 주소
+    maven { url 'https://repo.spring.io/milestone' }
+}
+
+dependencies {
+    // Web & Core
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.apache.groovy:groovy'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+
+    // Database & MyBatis
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
+    implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4.1:1.16'
+    runtimeOnly 'com.mysql:mysql-connector-j'
+
+    // AWS & S3
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+    implementation 'com.amazonaws:aws-java-sdk-s3:1.12.772'
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
+    // JWT
+    implementation 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.5'
+    implementation 'org.springframework.boot:spring-boot-starter-aop'
+    implementation 'org.springframework.retry:spring-retry'
+    implementation 'io.jsonwebtoken:jjwt-api:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.3'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.3'
+
+    // PDF 생성
+    implementation 'com.github.librepdf:openpdf:1.3.30'
+    implementation 'org.xhtmlrenderer:flying-saucer-pdf-openpdf:9.1.22'
+
+    // Lombok
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+
+    // Test
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'com.fasterxml.jackson.core:jackson-databind'
+    testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.5'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Spring Security 적용
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 비밀번호 암호화
+    implementation 'org.springframework.security:spring-security-crypto'
+
+
+    implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter'
+//    implementation 'org.springframework.ai:spring-ai-vertex-ai-gemini-spring-boot-starter'
+}
+dependencyManagement {
+    imports {
+        // ▼ 이 부분이 있어야 Spring AI 버전을 자동으로 잡아줌
+        mavenBom "org.springframework.ai:spring-ai-bom:1.0.0-M1"
+    }
+}
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(GroovyCompile) {
+    options.encoding = 'UTF-8'
+}

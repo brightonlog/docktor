@@ -1,0 +1,22 @@
+# SafeDeck 선박 도장 결함 탐지 데이터셋 설정 파일
+# YOLOv11 학습용
+
+# 데이터 경로 (클래스별 하위 폴더 포함)
+train: C:\Users\SSAFY\Desktop\S14P11E201\AI\kyr\images\train
+val: C:\Users\SSAFY\Desktop\S14P11E201\AI\kyr\images\val
+
+# 클래스 개수
+nc: 10
+
+# 클래스 이름 (영문)
+names:
+  0: WaterSpotting
+  1: Sagging
+  2: Peeling
+  3: Pinhole
+  4: Crack
+  5: Blistering
+  6: Inclusion
+  7: WeldingDamage
+  8: Scratch
+  9: Corrosion

@@ -1,0 +1,13 @@
+{
+  "timestamp": "20260127_095022",
+  "model_path": "C:\\Users\\SSAFY\\Desktop\\S14P11E201\\AI\\lks\\models\\anomaly\\best_model.pt",
+  "num_samples": 100,
+  "normal_samples": 50,
+  "anomaly_samples": 50,
+  "auroc": 0.7768,
+  "threshold": 0.11667674034833908,
+  "f1_score": 0.78260869073724,
+  "accuracy": 0.74,
+  "precision": 0.6875,
+  "recall": 0.88
+}

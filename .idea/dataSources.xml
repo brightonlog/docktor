@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="docktor@docktor-rdb.ctmawgggo2cr.ap-northeast-2.rds.amazonaws.com" uuid="ae23dfc5-1faf-480f-9859-d29b293ce815">
+      <imported>true</imported>
+      <configured-by-url>true</configured-by-url>
+      <remarks>$PROJECT_DIR$/BE/Docktor/src/main/resources/application.properties</remarks>
+      <jdbc-driver>net.sf.log4jdbc.sql.jdbcapi.DriverSpy</jdbc-driver>
+      <jdbc-url>jdbc:log4jdbc:mysql://docktor-rdb.ctmawgggo2cr.ap-northeast-2.rds.amazonaws.com:3306/docktor?serverTimezone=UTC</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="com.intellij.clouds.kubernetes.db.enabled" value="false" />
+      </jdbc-additional-properties>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+  </component>
+</project>

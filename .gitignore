@@ -1,0 +1,13 @@
+*.pem
+secret.properties
+.claude/settings.local.json
+.claude/*.personal.json
+nul
+.env
+Embedded/yolo_project/Sub2/cv2(cuda)/cup/18.jpg
+FE/ship-viewer/node_modules/*
+FE/ship-viewer/.next/*
+1회차_평가/이기성/ship-viewer
+FE/ship-viewer/next-env.d.ts
+.claude/settings.local.json
+.vscode/settings.json

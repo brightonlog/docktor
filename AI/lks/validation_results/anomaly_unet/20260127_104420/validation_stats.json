@@ -1,0 +1,14 @@
+{
+  "model": "LightweightUNet",
+  "timestamp": "20260127_104420",
+  "model_path": "C:\\Users\\SSAFY\\Desktop\\S14P11E201\\AI\\lks\\models\\anomaly_unet\\best_model.pt",
+  "num_samples": 100,
+  "normal_samples": 50,
+  "anomaly_samples": 50,
+  "auroc": 0.7452000000000001,
+  "threshold": 0.07311403751373291,
+  "f1_score": 0.7692307643363285,
+  "accuracy": 0.72,
+  "precision": 0.6666666666666666,
+  "recall": 0.88
+}

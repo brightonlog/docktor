@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.docktor.auth.dao.AuthDao">
+
+    <select id="findByCorpCode" resultType="com.ssafy.docktor.auth.dto.CorpDto">
+        SELECT 
+            corp_id AS corpId,
+            corp_code AS corpCode,
+            corp_name AS corpName,
+            password,
+            manager,
+            phone,
+            email,
+            create_date AS createDate
+        FROM corp
+        WHERE corp_code = #{corpCode}
+    </select>
+
+    <select id="findByCorpId">
+        SELECT
+            corp_id AS corpId,
+            corp_code AS corpCode,
+            corp_name AS corpName,
+            password,
+            manager,
+            phone,
+            email,
+            create_date AS createDate
+        FROM corp
+        WHERE corp_id = #{corpId}
+    </select>
+
+</mapper>

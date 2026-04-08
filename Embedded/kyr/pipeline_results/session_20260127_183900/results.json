@@ -1,0 +1,50 @@
+{
+  "session_dir": "session_20260127_183900",
+  "timestamp": "2026-01-27T18:39:05.393359",
+  "summary": {
+    "total_images": 3,
+    "defect_count": 0,
+    "anomaly_count": 0,
+    "normal_count": 3,
+    "avg_yolo_inference_ms": 1466.065247853597,
+    "avg_anomaly_inference_ms": 0.05714098612467448
+  },
+  "results": [
+    {
+      "image_name": "test_1.jpg",
+      "timestamp": "2026-01-27T18:39:05.334501",
+      "yolo_detections": [],
+      "yolo_inference_ms": 4355.625867843628,
+      "has_defect": false,
+      "anomaly_score": 0.516383744284074,
+      "anomaly_inference_ms": 0.09131431579589844,
+      "has_anomaly": false,
+      "final_status": "normal",
+      "output_image_path": "../pipeline_results/session_20260127_183900/test_1_result.jpg"
+    },
+    {
+      "image_name": "test_2.jpg",
+      "timestamp": "2026-01-27T18:39:05.364172",
+      "yolo_detections": [],
+      "yolo_inference_ms": 21.69322967529297,
+      "has_defect": false,
+      "anomaly_score": 0.007908798697122799,
+      "anomaly_inference_ms": 0.0400543212890625,
+      "has_anomaly": false,
+      "final_status": "normal",
+      "output_image_path": "../pipeline_results/session_20260127_183900/test_2_result.jpg"
+    },
+    {
+      "image_name": "test_3.jpg",
+      "timestamp": "2026-01-27T18:39:05.392834",
+      "yolo_detections": [],
+      "yolo_inference_ms": 20.876646041870117,
+      "has_defect": false,
+      "anomaly_score": 0.5776590432457611,
+      "anomaly_inference_ms": 0.0400543212890625,
+      "has_anomaly": false,
+      "final_status": "normal",
+      "output_image_path": "../pipeline_results/session_20260127_183900/test_3_result.jpg"
+    }
+  ]
+}

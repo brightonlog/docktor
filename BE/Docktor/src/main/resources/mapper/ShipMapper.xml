@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.docktor.ship.dao.ShipDao">
+
+    <!-- ResultMap 정의 -->
+    <resultMap id="ShipResultMap" type="com.ssafy.docktor.ship.dto.Ship">
+        <id property="shipId" column="ship_id"/>
+        <result property="corpId" column="corp_id"/>
+        <result property="name" column="name"/>
+        <result property="classNo" column="class_no"/>
+        <result property="imo" column="imo"/>
+        <result property="classNotation" column="class_notation"/>
+        <result property="flagState" column="flag_state"/>
+        <result property="port" column="port"/>
+        <result property="ton" column="ton"/>
+        <result property="deadWeight" column="dead_weight"/>
+        <result property="lbp" column="lbp"/>
+        <result property="shipbuilder" column="shipbuilder"/>
+        <result property="hullNumber" column="hull_number"/>
+        <result property="deliveryDate" column="delivery_date"/>
+        <result property="buildDate" column="build_date"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+    <!-- 선박 등록 -->
+    <insert id="insertShip" parameterType="com.ssafy.docktor.ship.dto.Ship"
+            useGeneratedKeys="true" keyProperty="shipId" keyColumn="ship_id">
+        INSERT INTO ship (
+            corp_id, name, class_no, imo, class_notation, flag_state, port,
+            ton, dead_weight, lbp, shipbuilder, hull_number,
+            delivery_date, build_date, create_date
+        ) VALUES (
+                     #{corpId}, #{name}, #{classNo}, #{imo}, #{classNotation}, #{flagState}, #{port},
+                     #{ton}, #{deadWeight}, #{lbp}, #{shipbuilder}, #{hullNumber},
+                     #{deliveryDate}, #{buildDate}, NOW()
+                 )
+    </insert>
+
+    <!-- 선박 목록 조회 -->
+    <select id="selectShipList" resultMap="ShipResultMap">
+        SELECT *
+        FROM ship
+        WHERE corp_id = #{corpId}
+        <if test="search != null and search != ''">
+            AND (
+            name LIKE CONCAT('%', #{search}, '%')
+            OR class_no LIKE CONCAT('%', #{search}, '%')
+            OR imo LIKE CONCAT('%', #{search}, '%')
+            )
+        </if>
+        ORDER BY create_date DESC
+        LIMIT #{limit} OFFSET #{offset}
+    </select>
+
+    <!-- 선박 전체 개수 -->
+    <select id="selectShipCount" resultType="int">
+        SELECT COUNT(*)
+        FROM ship
+        WHERE corp_id = #{corpId}
+        <if test="search != null and search != ''">
+            AND (
+            name LIKE CONCAT('%', #{search}, '%')
+            OR class_no LIKE CONCAT('%', #{search}, '%')
+            OR imo LIKE CONCAT('%', #{search}, '%')
+            )
+        </if>
+    </select>
+
+    <!-- 선박 상세 조회 -->
+    <select id="selectShipById" resultMap="ShipResultMap">
+        SELECT *
+        FROM ship
+        WHERE ship_id = #{shipId}
+
+    </select>
+
+    <!-- 선박 수정 -->
+    <update id="updateShip" parameterType="com.ssafy.docktor.ship.dto.Ship">
+        UPDATE ship
+        SET
+            name = #{name},
+            class_no = #{classNo},
+            imo = #{imo},
+            class_notation = #{classNotation},
+            flag_state = #{flagState},
+            port = #{port},
+            ton = #{ton},
+            dead_weight = #{deadWeight},
+            lbp = #{lbp},
+            shipbuilder = #{shipbuilder},
+            hull_number = #{hullNumber},
+            delivery_date = #{deliveryDate},
+            build_date = #{buildDate}
+        WHERE ship_id = #{shipId}
+          AND corp_id = #{corpId}
+    </update>
+
+    <!-- 선박 삭제 -->
+    <delete id="deleteShip">
+        DELETE FROM ship
+        WHERE ship_id = #{shipId}
+          AND corp_id = #{corpId}
+    </delete>
+
+</mapper>

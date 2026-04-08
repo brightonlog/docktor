@@ -1,0 +1,14 @@
+artifact_uri: file:///c:/Users/SSAFY/Desktop/S14P11E201/AI/kyr/experiments/mlruns/381338920618035438/d81ab6941d164f7ea65749345fa528b2/artifacts
+end_time: 1769474949004
+entry_point_name: ''
+experiment_id: '381338920618035438'
+lifecycle_stage: active
+run_id: d81ab6941d164f7ea65749345fa528b2
+run_name: yolov26n_896_20260127_062646
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1769462981047
+status: 3
+tags: []
+user_id: SSAFY

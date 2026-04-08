@@ -1,0 +1,6 @@
+# ROI Configuration
+# Target Box coordinates (pixels, 640x480 resolution)
+x_start=200
+x_end=440
+y_start=45
+y_end=435

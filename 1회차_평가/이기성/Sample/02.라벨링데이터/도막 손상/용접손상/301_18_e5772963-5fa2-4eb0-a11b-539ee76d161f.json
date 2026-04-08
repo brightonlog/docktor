@@ -1,0 +1,141 @@
+{
+    "info": {
+        "name": "선박 도장 품질 측정 데이터",
+        "url": "miraeit.net/",
+        "description": "선박 도장 품질 측정 데이터",
+        "version": "1.0",
+        "contributor": "미래아이티컨소시엄",
+        "date_created": "2022-12-08"
+    },
+    "images": [
+        {
+            "id": 1,
+            "file_name": "301_18_e5772963-5fa2-4eb0-a11b-539ee76d161f.jpg",
+            "width": 4000,
+            "height": 1868,
+            "license": 1,
+            "date_captured": "2022-08-16 10:57:04"
+        }
+    ],
+    "licenses": [
+        {
+            "id": 1,
+            "name": "CC BY-NC",
+            "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/"
+        }
+    ],
+    "categories": [
+        {
+            "supercategory": "선박도장",
+            "id": 101,
+            "name": "정상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 201,
+            "name": "워터스포팅"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 202,
+            "name": "흐름"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 203,
+            "name": "도막분리"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 204,
+            "name": "핀홀"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 205,
+            "name": "균열"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 206,
+            "name": "부풀음"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 207,
+            "name": "이물질포함"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 301,
+            "name": "용접손상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 302,
+            "name": "스크래치"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 303,
+            "name": "도막떨어짐"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 301,
+            "attributes": {
+                "part": "해치커버",
+                "quality": "불량품"
+            },
+            "iscrowd": 0,
+            "area": 275765.95,
+            "segmentation": [
+                1450.8,
+                850.5,
+                1390.8,
+                965.0,
+                1349.9,
+                1131.3,
+                1371.7,
+                1297.7,
+                1450.8,
+                1431.3,
+                1568.0,
+                1458.5,
+                1794.4,
+                1507.6,
+                1887.1,
+                1450.4,
+                1928.0,
+                1379.5,
+                1906.1,
+                1308.6,
+                1857.1,
+                1254.0,
+                1846.2,
+                1175.0,
+                1813.4,
+                1085.0,
+                1739.8,
+                1030.5,
+                1674.4,
+                877.8,
+                1647.1,
+                804.1,
+                1589.9,
+                771.4,
+                1505.3,
+                787.8
+            ],
+            "bbox": [
+                1349.9,
+                771.4,
+                578.1,
+                736.2
+            ]
+        }
+    ]
+}

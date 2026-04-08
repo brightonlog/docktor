@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.docktor.corp.dao.CorpDao">
+
+    <resultMap id="CorpResultMap" type="com.ssafy.docktor.corp.dto.CorpResponseDto">
+        <id property="corpId" column="corp_id"/>
+        <result property="corpCode" column="corp_code"/>
+        <result property="corpName" column="corp_name"/>
+        <result property="manager" column="manager"/>
+        <result property="phone" column="phone"/>
+        <result property="email" column="email"/>
+        <result property="createDate" column="create_date"/>
+    </resultMap>
+
+    <select id="selectCorpById" resultMap="CorpResultMap">
+        SELECT
+            corp_id,
+            corp_code,
+            corp_name,
+            manager,
+            phone,
+            email,
+            create_date
+        FROM corp
+        WHERE corp_id = #{corpId}
+    </select>
+
+    <update id="updateCorp">
+        UPDATE corp
+        <set>
+            <if test="corpCode != null">corp_code = #{corpCode},</if>
+            <if test="corpName != null">corp_name = #{corpName},</if>
+            <if test="manager != null">manager = #{manager},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="email != null">email = #{email},</if>
+        </set>
+        WHERE corp_id = #{corpId}
+    </update>
+
+</mapper>

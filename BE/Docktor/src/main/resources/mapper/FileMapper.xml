@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.docktor.ship.dao.FileDao">
+
+    <insert id="insertFile">
+        INSERT INTO file (table_name, table_id, path)
+        VALUES (#{tableName}, #{tableId}, #{path})
+    </insert>
+
+    <!-- 모델 파일 경로 조회 (path에 'model' 포함, 가장 최근 1개) -->
+    <select id="selectModelPathByTableId" resultType="String">
+        SELECT path
+        FROM file
+        WHERE table_name = #{tableName}
+          AND table_id = #{tableId}
+          AND path LIKE '%/model/%'
+        ORDER BY create_date DESC
+        LIMIT 1
+    </select>
+
+    <!-- 썸네일 파일 경로 조회 (path에 'thumbnail' 포함, 가장 최근 1개) -->
+    <select id="selectThumbnailPathByTableId" resultType="String">
+        SELECT path
+        FROM file
+        WHERE table_name = #{tableName}
+          AND table_id = #{tableId}
+          AND path LIKE '%/thumbnail/%'
+        ORDER BY create_date DESC
+        LIMIT 1
+    </select>
+
+    <!-- 특정 테이블의 모든 파일 삭제 -->
+    <delete id="deleteFilesByTableId">
+        DELETE FROM file
+        WHERE table_name = #{tableName}
+          AND table_id = #{tableId}
+    </delete>
+
+    <!-- 특정 테이블의 모델 파일만 삭제 (path에 'model' 포함) -->
+    <delete id="deleteModelFilesByTableId">
+        DELETE FROM file
+        WHERE table_name = #{tableName}
+          AND table_id = #{tableId}
+          AND path LIKE '%/model/%'
+    </delete>
+
+    <!-- 특정 테이블의 썸네일 파일만 삭제 (path에 'thumbnail' 포함) -->
+    <delete id="deleteThumbnailFilesByTableId">
+        DELETE FROM file
+        WHERE table_name = #{tableName}
+          AND table_id = #{tableId}
+          AND path LIKE '%/thumbnail/%'
+    </delete>
+
+</mapper>

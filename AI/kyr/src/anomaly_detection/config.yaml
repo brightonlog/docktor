@@ -1,0 +1,139 @@
+# =============================================================================
+# Anomaly Detection Configuration
+# 선박 도장 결함 이상탐지를 위한 Autoencoder 설정
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# 데이터 설정
+# -----------------------------------------------------------------------------
+data:
+  # 정상 이미지 경로 (학습용)
+  train_dir: "data/processed/train/images/normal"
+  # 검증용 정상 이미지 (선택)
+  val_dir: "data/processed/val/images/normal"
+  # 검증 데이터 비율 (train_dir만 사용 시)
+  val_split: 0.1
+  # 지원 이미지 확장자
+  extensions:
+    - ".jpg"
+    - ".jpeg"
+    - ".png"
+
+# -----------------------------------------------------------------------------
+# 모델 설정
+# -----------------------------------------------------------------------------
+model:
+  # 모델 타입: 'standard' (더 정확) or 'lightweight' (더 빠름)
+  type: "standard"
+  # 입력 이미지 크기 (정사각형)
+  input_size: 256
+  # 잠재 공간 차원 (클수록 복원 품질 좋음, 메모리 사용 증가)
+  latent_dim: 256
+  # 입력 채널 수 (RGB=3)
+  in_channels: 3
+
+# -----------------------------------------------------------------------------
+# 학습 설정
+# -----------------------------------------------------------------------------
+training:
+  # 에폭 수
+  epochs: 100
+  # 배치 크기 (GPU 메모리에 따라 조절)
+  batch_size: 32
+  # 학습률
+  learning_rate: 0.001
+  # Weight decay (L2 정규화)
+  weight_decay: 0.00001
+
+  # Loss 설정
+  loss:
+    # MSE와 SSIM 비율 (0.5 = 동일 비중)
+    # alpha * MSE + (1-alpha) * SSIM
+    alpha: 0.5
+
+  # 스케줄러 설정
+  scheduler:
+    type: "cosine"  # cosine, step, plateau
+    min_lr: 0.000001
+
+  # Early Stopping
+  patience: 20
+
+  # 데이터 증강 사용 여부
+  augment: true
+
+  # 체크포인트 저장 간격
+  save_every: 10
+
+# -----------------------------------------------------------------------------
+# 추론 설정
+# -----------------------------------------------------------------------------
+inference:
+  # 이상 판정 임계값 (이상 점수가 이 값보다 크면 이상으로 판정)
+  # 학습 후 calibrate_threshold()로 자동 보정 권장
+  threshold: 0.01
+
+  # 임계값 자동 보정 설정
+  calibration:
+    # 사용할 백분위수 (99 = 정상 이미지의 99%가 정상으로 분류됨)
+    percentile: 99.0
+    # 보정에 사용할 최대 이미지 수
+    max_samples: 100
+
+  # 이상 맵 반환 여부
+  return_anomaly_map: true
+
+# -----------------------------------------------------------------------------
+# 출력 설정
+# -----------------------------------------------------------------------------
+output:
+  # 모델 저장 경로
+  model_dir: "models/anomaly_detection"
+  # 결과 저장 경로
+  results_dir: "results/anomaly_detection"
+  # 시각화 저장 경로
+  visualization_dir: "results/anomaly_detection/visualizations"
+
+# -----------------------------------------------------------------------------
+# MLflow 설정
+# -----------------------------------------------------------------------------
+mlflow:
+  enabled: true
+  tracking_uri: "file:./experiments/mlruns"
+  experiment_name: "anomaly-detection"
+  # 자동 로깅
+  log_artifacts: true
+  log_models: true
+
+# -----------------------------------------------------------------------------
+# 하드웨어 설정 (Jetson Orin Nano)
+# -----------------------------------------------------------------------------
+hardware:
+  # 디바이스: 'auto', 'cuda', 'cpu'
+  device: "auto"
+  # 혼합 정밀도 학습 (FP16) - Jetson에서 메모리 절약
+  mixed_precision: false
+  # DataLoader 워커 수
+  num_workers: 4
+  # GPU 메모리 핀
+  pin_memory: true
+
+# -----------------------------------------------------------------------------
+# 2-Step Hybrid Pipeline 설정
+# -----------------------------------------------------------------------------
+pipeline:
+  # YOLO 모델 경로 (1단계)
+  yolo_model: "models/yolo_best.pt"
+  # Autoencoder 모델 경로 (2단계)
+  autoencoder_model: "models/anomaly_detection/best_model.pt"
+
+  # YOLO 결과에서 결함이 없는 이미지만 Autoencoder로 전달
+  # (YOLO가 결함을 탐지한 이미지는 바로 결함으로 처리)
+  yolo_confidence_threshold: 0.5
+
+  # 최종 출력
+  output:
+    # 이상 이미지 저장 경로
+    anomaly_images_dir: "results/anomalies"
+    # 메타데이터 저장
+    save_metadata: true

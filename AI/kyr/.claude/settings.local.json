@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(head:*)",
+      "Bash(python3:*)",
+      "Bash(xargs cat:*)",
+      "Bash(wc:*)",
+      "Bash(python organize_data.py:*)",
+      "Bash(python:*)",
+      "Bash(dir:*)",
+      "Bash(findstr:*)",
+      "Bash(powershell -Command \"Get-ChildItem -Path ''images\\\\train'' -File | Select-Object -First 20 Name\")",
+      "Bash(powershell -Command \"\\(Get-ChildItem -Path ''images\\\\train'' -File\\).Count\")",
+      "Bash(powershell -Command \"\\(Get-ChildItem -Path ''images\\\\val'' -File\\).Count\")",
+      "Bash(timeout:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)"
+    ]
+  }
+}

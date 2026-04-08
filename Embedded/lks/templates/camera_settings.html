@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카메라 설정 조정</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .video-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .video-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        #video {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            background: #000;
+        }
+
+        .controls-section {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .controls-section h2 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .control-group {
+            margin-bottom: 25px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .control-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.95em;
+        }
+
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        input[type="range"] {
+            flex: 1;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        input[type="range"]::-webkit-slider-thumb:hover {
+            background: #764ba2;
+            transform: scale(1.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+            border: none;
+        }
+
+        .value-display {
+            min-width: 60px;
+            text-align: center;
+            font-weight: bold;
+            color: #667eea;
+            font-size: 1.1em;
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 30px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #667eea;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(30px);
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-reset {
+            background: #ff6b6b;
+            color: white;
+        }
+
+        .btn-reset:hover {
+            background: #ff5252;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(255,107,107,0.3);
+        }
+
+        .btn-properties {
+            background: #4ecdc4;
+            color: white;
+        }
+
+        .btn-properties:hover {
+            background: #45b7af;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(78,205,196,0.3);
+        }
+
+        .properties-display {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .properties-display pre {
+            margin: 0;
+            color: #333;
+        }
+
+        @media (max-width: 1024px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #4ecdc4;
+            margin-right: 8px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><span class="status-indicator"></span>카메라 설정 조정 도구</h1>
+            <p>실시간으로 카메라 파라미터를 조정하고 결과를 확인하세요</p>
+        </div>
+
+        <div class="content">
+            <div class="video-section">
+                <h2>실시간 카메라 피드</h2>
+                <img id="video" src="/video_feed" alt="카메라 피드">
+            </div>
+
+            <div class="controls-section">
+                <h2>카메라 설정</h2>
+
+                <div class="control-group">
+                    <label>자동 노출 (Auto Exposure)</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="auto_exposure" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label>노출 (Exposure): <span id="exposure-value">-5</span></label>
+                    <div class="slider-container">
+                        <input type="range" id="exposure" min="-50" max="0" value="-5" step="1">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>밝기 (Brightness): <span id="brightness-value">0</span></label>
+                    <div class="slider-container">
+                        <input type="range" id="brightness" min="-50" max="50" value="0" step="1">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>대비 (Contrast): <span id="contrast-value">0</span></label>
+                    <div class="slider-container">
+                        <input type="range" id="contrast" min="-50" max="50" value="0" step="1">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>채도 (Saturation): <span id="saturation-value">0</span></label>
+                    <div class="slider-container">
+                        <input type="range" id="saturation" min="-50" max="50" value="0" step="1">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>선명도 (Sharpness): <span id="sharpness-value">50</span></label>
+                    <div class="slider-container">
+                        <input type="range" id="sharpness" min="0" max="100" value="50" step="1">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>게인 (Gain): <span id="gain-value">50</span></label>
+                    <div class="slider-container">
+                        <input type="range" id="gain" min="0" max="100" value="50" step="1">
+                    </div>
+                </div>
+
+                <div class="control-group">
+                    <label>자동 화이트밸런스 (Auto WB)</label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="auto_wb" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <div class="control-group">
+                    <label>색온도 (WB Temperature): <span id="wb_temp-value">5000</span>K</label>
+                    <div class="slider-container">
+                        <input type="range" id="wb_temp" min="2000" max="10000" value="5000" step="100">
+                    </div>
+                </div>
+
+                <div class="buttons">
+                    <button class="btn-reset" onclick="resetSettings()">초기화</button>
+                    <button class="btn-properties" onclick="showProperties()">현재 값 확인</button>
+                </div>
+
+                <div class="properties-display" id="properties" style="display: none;">
+                    <pre id="properties-content"></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 슬라이더 값 업데이트 및 서버 전송
+        function updateSetting(name, value) {
+            // 화면에 값 표시
+            const valueDisplay = document.getElementById(`${name}-value`);
+            if (valueDisplay) {
+                if (name === 'wb_temp') {
+                    valueDisplay.textContent = value;
+                } else {
+                    valueDisplay.textContent = value;
+                }
+            }
+
+            // 서버에 전송
+            sendSettings();
+        }
+
+        // 모든 설정을 서버에 전송
+        function sendSettings() {
+            const settings = {
+                brightness: parseInt(document.getElementById('brightness').value),
+                contrast: parseInt(document.getElementById('contrast').value),
+                saturation: parseInt(document.getElementById('saturation').value),
+                exposure: parseInt(document.getElementById('exposure').value),
+                gain: parseInt(document.getElementById('gain').value),
+                sharpness: parseInt(document.getElementById('sharpness').value),
+                wb_temp: parseInt(document.getElementById('wb_temp').value),
+                auto_exposure: document.getElementById('auto_exposure').checked ? 1 : 0,
+                auto_wb: document.getElementById('auto_wb').checked ? 1 : 0,
+                auto_focus: 0,
+                width: 640,
+                height: 480,
+            };
+
+            fetch('/settings', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(settings)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('설정 업데이트:', data);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // 설정 초기화
+        function resetSettings() {
+            fetch('/reset', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // UI 업데이트
+                    document.getElementById('brightness').value = 0;
+                    document.getElementById('contrast').value = 0;
+                    document.getElementById('saturation').value = 0;
+                    document.getElementById('exposure').value = -5;
+                    document.getElementById('gain').value = 50;
+                    document.getElementById('sharpness').value = 50;
+                    document.getElementById('wb_temp').value = 5000;
+                    document.getElementById('auto_exposure').checked = true;
+                    document.getElementById('auto_wb').checked = true;
+
+                    // 값 표시 업데이트
+                    updateSetting('brightness', 0);
+                    updateSetting('contrast', 0);
+                    updateSetting('saturation', 0);
+                    updateSetting('exposure', -5);
+                    updateSetting('gain', 50);
+                    updateSetting('sharpness', 50);
+                    updateSetting('wb_temp', 5000);
+
+                    alert('설정이 초기화되었습니다!');
+                }
+            });
+        }
+
+        // 카메라 속성 확인
+        function showProperties() {
+            fetch('/properties')
+            .then(response => response.json())
+            .then(data => {
+                const propertiesDiv = document.getElementById('properties');
+                const propertiesContent = document.getElementById('properties-content');
+                propertiesContent.textContent = JSON.stringify(data, null, 2);
+                propertiesDiv.style.display = 'block';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // 이벤트 리스너 등록
+        document.addEventListener('DOMContentLoaded', function() {
+            // 슬라이더 이벤트
+            ['brightness', 'contrast', 'saturation', 'exposure', 'gain', 'sharpness', 'wb_temp'].forEach(id => {
+                const slider = document.getElementById(id);
+                slider.addEventListener('input', function() {
+                    updateSetting(id, this.value);
+                });
+            });
+
+            // 체크박스 이벤트
+            ['auto_exposure', 'auto_wb'].forEach(id => {
+                document.getElementById(id).addEventListener('change', sendSettings);
+            });
+        });
+    </script>
+</body>
+</html>

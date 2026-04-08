@@ -1,0 +1,6 @@
+outs:
+- md5: 75d27b860f8c73473be222838aaf8b58.dir
+  size: 6095424944
+  nfiles: 1044
+  hash: md5
+  path: normal_images

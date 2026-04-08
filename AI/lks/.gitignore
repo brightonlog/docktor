@@ -1,0 +1,74 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb_checkpoints
+
+# Data
+data/raw/*
+data/extracted/*
+data/processed/*
+data/extracted/*
+data/yolo_dataset/
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+aihubshell
+
+# Models
+models/*
+models/detection/*
+models/anomaly/*
+models/jetson/*
+!models/detection/.gitkeep
+!models/anomaly/.gitkeep
+!models/jetson/.gitkeep
+*.pt
+*.pth
+*.onnx
+*.engine
+*.tflite
+checkpoints/
+
+# MLOps
+mlruns/
+mlflow/
+bentoml/
+
+# Training Results
+runs/
+results/
+
+# Logs
+logs/
+*.log
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp files
+*.tmp
+*.temp
+
+
+# results
+results/*

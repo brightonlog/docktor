@@ -1,0 +1,83 @@
+# YOLO Model Comparison Training Configuration
+# SafeDeck Project - Ship Defect Detection
+
+# Common training settings for all models
+training:
+  epochs: 100
+  batch_size: 16
+  imgsz: 640
+  optimizer: AdamW
+  lr0: 0.01
+  lrf: 0.01
+  momentum: 0.937
+  weight_decay: 0.0005
+  warmup_epochs: 3
+  patience: 50
+  save_period: 10
+  workers: 8
+  device: 0  # GPU device id
+
+# Data settings
+data:
+  base_dir: "data/processed"
+  train_images: "train/images"
+  train_labels: "train/labels"
+  val_images: "val/images"
+  val_labels: "val/labels"
+  nc: 7  # number of classes
+
+# Class names (결함 7종)
+names:
+  0: "Crack"
+  1: "Scratch"
+  2: "Pinhole"
+  3: "Peeling"
+  4: "Welding_Damage"
+  5: "Blister"
+  6: "Water_Spotting"
+
+# Augmentation settings
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.7
+  hsv_v: 0.4
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0
+  copy_paste: 0.0
+
+# MLflow settings
+mlflow:
+  tracking_uri: "file:./experiments/mlruns"
+  experiment_name: "safedeck-model-comparison"
+  run_name_prefix: "yolo"
+
+# Model configurations
+models:
+  yolov11n:
+    name: "yolov11n"
+    pretrained: "yolo11n.pt"
+    description: "Ultra-light model for maximum speed"
+
+  yolov11s:
+    name: "yolov11s"
+    pretrained: "yolo11s.pt"
+    description: "Balanced model for speed-accuracy tradeoff"
+
+  yolov26s:
+    name: "yolov26s"
+    pretrained: "yolo26s.pt"
+    description: "Latest architecture for accuracy"
+
+# Evaluation settings
+evaluation:
+  conf_threshold: 0.25
+  iou_threshold: 0.45
+  max_det: 300
+  benchmark_iterations: 100

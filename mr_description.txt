@@ -1,0 +1,10 @@
+## 🎯 요약
+- 불필요한 UI 요소 제거 및 아이콘 일관성 개선
+
+## 🛠 변경 사항
+- DefectModal.tsx: 결함 상세 정보의 Badge 컴포넌트 제거
+- InspectionAccordion.tsx: 미선택 상태 표시를 숫자에서 CheckCircle 아이콘으로 변경
+
+## 👀 리뷰 포인트
+- Badge 제거로 인한 UI 레이아웃 변화 확인
+- 아이콘 변경 후 시각적 일관성 검토

@@ -1,0 +1,107 @@
+# ============================================================
+# Jetson Orin Nano에서 TensorRT 변환
+# ============================================================
+# 이 셀은 Jetson 환경에서만 실행하세요!
+
+import platform
+import os
+import torch
+from ultralytics import YOLO
+
+print("="*70)
+print("  Phase 2-B: TensorRT 변환 (Jetson Orin Nano)")
+print("="*70)
+
+# 1. 환경 확인
+current_platform = platform.system()
+print(f"\n[1] 플랫폼 확인")
+print(f"    현재 환경: {current_platform}")
+
+if current_platform == "Windows":
+    print("\n⚠️ 경고: Windows 환경에서는 이 셀을 실행하지 마세요!")
+    print("   Jetson Orin Nano로 파일을 전송한 후 실행하세요.")
+    raise SystemExit("Windows에서 TensorRT 변환 불가")
+
+print(f"    ✅ Jetson/Linux 환경 확인")
+
+# 2. CUDA 확인
+print(f"\n[2] CUDA 확인")
+print(f"    CUDA 사용 가능: {torch.cuda.is_available()}")
+if torch.cuda.is_available():
+    print(f"    GPU: {torch.cuda.get_device_name(0)}")
+    print(f"    CUDA 버전: {torch.version.cuda}")
+    print(f"    ✅ GPU 사용 준비 완료")
+else:
+    print(f"    ⚠️ CUDA를 사용할 수 없습니다. CPU로 변환됩니다.")
+
+# 3. 모델 파일 확인
+print(f"\n[3] 모델 파일 확인")
+model_path = './best.pt'
+if not os.path.exists(model_path):
+    print(f"    ❌ 모델 파일을 찾을 수 없습니다: {model_path}")
+    print(f"    best.pt 파일을 Jetson으로 복사했는지 확인하세요.")
+    raise FileNotFoundError(model_path)
+
+pt_size = os.path.getsize(model_path) / (1024 * 1024)
+print(f"    파일: {model_path}")
+print(f"    크기: {pt_size:.2f} MB")
+print(f"    ✅ 모델 파일 확인 완료")
+
+# 4. TensorRT 변환 시작
+print("\n" + "="*70)
+print("TensorRT FP16 변환 시작...")
+print("="*70)
+print("⏱️  예상 소요 시간: 2-5분")
+print("📊 변환 설정:")
+print("   - 정밀도: FP16 (속도 2배, 정확도 유지)")
+print("   - 입력 크기: 640x640")
+print("   - 배치 크기: 1 (실시간 추론용)")
+print("\n💡 참고: Ultralytics가 자동으로 TensorRT를 사용합니다.")
+print("   (TensorRT import 불필요 - 내부적으로 처리)")
+
+try:
+    model = YOLO(model_path)
+    
+    # TensorRT 변환 (TensorRT import 없이 작동!)
+    engine_path = model.export(
+        format='engine',      # TensorRT 엔진
+        half=True,            # FP16 정밀도
+        imgsz=640,            # 입력 이미지 크기
+        device=0,             # GPU 0 사용
+        simplify=True,        # ONNX 그래프 단순화
+        workspace=4,          # 작업 공간 4GB
+        verbose=True          # 상세 로그 출력
+    )
+    
+    print(f"\n" + "="*70)
+    print("✅ TensorRT 변환 성공!")
+    print("="*70)
+    print(f"📁 파일 위치: {engine_path}")
+    
+    # 파일 크기 비교
+    engine_size = os.path.getsize(engine_path) / (1024 * 1024)
+    
+    print(f"\n📊 파일 크기 비교:")
+    print(f"   - PyTorch (.pt):      {pt_size:.2f} MB")
+    print(f"   - TensorRT (.engine): {engine_size:.2f} MB")
+    print(f"   - 압축률: {(1 - engine_size/pt_size)*100:.1f}% 감소")
+    
+    print(f"\n💡 다음 단계:")
+    print(f"   1. Phase 3: 추론 속도 벤치마크")
+    print(f"   2. Flask API 서버 통합")
+    print(f"   3. 실시간 카메라 테스트")
+    
+except Exception as e:
+    print(f"\n❌ TensorRT 변환 실패!")
+    print(f"   에러: {e}")
+    print(f"\n💡 문제 해결:")
+    print(f"   1. CUDA 메모리 부족: workspace 값을 2로 낮추기")
+    print(f"      model.export(..., workspace=2)")
+    print(f"   2. JetPack 버전 확인: sudo apt show nvidia-jetpack")
+    print(f"   3. ONNX 경유 시도: 먼저 .onnx로 변환 후 .engine 생성")
+    print(f"   4. TensorRT 로그 확인: verbose=True로 상세 로그 보기")
+    raise
+
+print("\n" + "="*70)
+print("  Phase 2-B 완료!")
+print("="*70)

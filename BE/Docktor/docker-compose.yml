@@ -1,0 +1,68 @@
+version: '3.8'
+
+services:
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    restart: always
+    ports:
+      - "8081:8080"
+    networks:
+      - monitoring
+
+  my-app:
+    build: .
+    container_name: my-app-1
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+    networks:
+      - monitoring
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    environment:
+      # application.properties의 설정을 도커 서비스 이름으로 덮어씌웁니다.
+      - SPRING_DATA_REDIS_HOST=redis
+      - SPRING_DATA_REDIS_PORT=6379
+      - MQTT_BROKER=tcp://your.mqtt.broker:1883
+      - MQTT_CLIENT_ID=docktor-local-test
+      - SPRING_PROFILES_ACTIVE=default
+
+  redis:
+    image: redis:latest
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - monitoring
+
+  redis-insight:
+    image: redis/redisinsight:latest
+    container_name: redis-insight
+    ports:
+      - "8001:5540"
+    networks:
+      - monitoring
+
+#  prometheus:
+#    image: prom/prometheus:latest
+#    container_name: prometheus
+#    volumes:
+#      - ./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+#    ports:
+#      - "9090:9090"
+#    networks:
+#      - monitoring
+
+#  grafana:
+#    image: grafana/grafana:latest
+#    container_name: grafana
+#    ports:
+#      - "3000:3000"
+#    networks:
+#      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge

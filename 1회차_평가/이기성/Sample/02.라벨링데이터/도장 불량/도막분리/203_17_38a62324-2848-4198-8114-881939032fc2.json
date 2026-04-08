@@ -1,0 +1,145 @@
+{
+    "info": {
+        "name": "선박 도장 품질 측정 데이터",
+        "url": "miraeit.net/",
+        "description": "선박 도장 품질 측정 데이터",
+        "version": "1.0",
+        "contributor": "미래아이티컨소시엄",
+        "date_created": "2022-12-08"
+    },
+    "images": [
+        {
+            "id": 1,
+            "file_name": "203_17_38a62324-2848-4198-8114-881939032fc2.jpg",
+            "width": 3024,
+            "height": 4032,
+            "license": 1,
+            "date_captured": "2022-11-10 16:52:19"
+        }
+    ],
+    "licenses": [
+        {
+            "id": 1,
+            "name": "CC BY-NC",
+            "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/"
+        }
+    ],
+    "categories": [
+        {
+            "supercategory": "선박도장",
+            "id": 101,
+            "name": "정상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 201,
+            "name": "워터스포팅"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 202,
+            "name": "흐름"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 203,
+            "name": "도막분리"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 204,
+            "name": "핀홀"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 205,
+            "name": "균열"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 206,
+            "name": "부풀음"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 207,
+            "name": "이물질포함"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 301,
+            "name": "용접손상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 302,
+            "name": "스크래치"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 303,
+            "name": "도막떨어짐"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 203,
+            "attributes": {
+                "part": "외판",
+                "quality": "불량품"
+            },
+            "iscrowd": 0,
+            "area": 1390723.31,
+            "segmentation": [
+                892.6,
+                3814.1,
+                824.4,
+                3598.4,
+                849.5,
+                3354.0,
+                946.6,
+                3213.9,
+                1090.3,
+                3116.8,
+                1647.4,
+                3084.5,
+                2484.8,
+                3062.9,
+                2905.3,
+                2969.5,
+                3023.6,
+                2921.2,
+                3023.8,
+                3508.6,
+                2880.1,
+                3620.0,
+                2639.3,
+                3630.8,
+                2366.2,
+                3558.9,
+                2200.9,
+                3591.2,
+                1827.1,
+                3641.6,
+                1482.1,
+                3778.1,
+                1320.3,
+                3929.1,
+                1181.3,
+                4032.0,
+                1014.4,
+                4032.0,
+                960.9,
+                3943.5
+            ],
+            "bbox": [
+                824.4,
+                2921.2,
+                2199.5,
+                1110.8
+            ]
+        }
+    ]
+}

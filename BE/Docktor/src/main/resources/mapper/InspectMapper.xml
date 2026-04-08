@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.docktor.inspect.dao.InspectDao">
+
+    <select id="selectAllAnalyze" resultType="InspectDto">
+        SELECT i.*
+             , s.name as section_name
+             , s.description as section_KR_name
+        FROM inspect i
+                 JOIN section s ON s.section_id = i.section_id  -- ship_id 대신 고유한 section_id로 조인
+        WHERE i.ship_id = #{shipId}
+        ORDER BY create_date DESC
+    </select>
+
+    <insert id="insertInspect" parameterType="com.ssafy.docktor.inspect.dto.InspectDto"
+            useGeneratedKeys="true"
+            keyProperty="inspectId">
+        INSERT INTO inspect (section_id, ship_id, status, start_time, create_date)
+        VALUES (#{sectionId}, #{shipId}, #{status}, #{startTime}, NOW())
+    </insert>
+
+    <update id="updateStatus" parameterType="InspectDto">
+        UPDATE inspect
+        SET status = #{status},
+            end_time = #{endTime}
+        WHERE inspect_id = #{inspectId}
+    </update>
+
+    <select id="selectOngoingInspects" resultType="InspectDto">
+        SELECT inspect_id, section_id, ship_id, status, start_time, end_time, create_date
+        FROM inspect
+        WHERE status = 'in_progress'
+    </select>
+
+    <update id="updateAllInProgressToDisconnected">
+        UPDATE inspect
+        SET status = 'failed',
+            end_time = NOW()
+        WHERE status = 'in_progress'
+    </update>
+
+    <select id="getCurrentStatus" resultType="String">
+        SELECT status
+        FROM inspect
+        WHERE ship_id = #{shipId}
+          AND section_id = #{sectionId}
+        ORDER BY create_date DESC
+        LIMIT 1
+    </select>
+
+    <select id="findById" resultType="com.ssafy.docktor.inspect.dto.InspectDto">
+        SELECT * FROM inspect
+        WHERE inspect_id = #{inspectId}
+    </select>
+
+
+</mapper>

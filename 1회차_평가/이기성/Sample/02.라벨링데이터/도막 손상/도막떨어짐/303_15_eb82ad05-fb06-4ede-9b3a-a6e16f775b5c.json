@@ -1,0 +1,139 @@
+{
+    "info": {
+        "name": "선박 도장 품질 측정 데이터",
+        "url": "miraeit.net/",
+        "description": "선박 도장 품질 측정 데이터",
+        "version": "1.0",
+        "contributor": "미래아이티컨소시엄",
+        "date_created": "2022-12-08"
+    },
+    "images": [
+        {
+            "id": 1,
+            "file_name": "303_15_eb82ad05-fb06-4ede-9b3a-a6e16f775b5c.jpg",
+            "width": 4032,
+            "height": 3024,
+            "license": 1,
+            "date_captured": "2022-11-26 15:36:57"
+        }
+    ],
+    "licenses": [
+        {
+            "id": 1,
+            "name": "CC BY-NC",
+            "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/"
+        }
+    ],
+    "categories": [
+        {
+            "supercategory": "선박도장",
+            "id": 101,
+            "name": "정상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 201,
+            "name": "워터스포팅"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 202,
+            "name": "흐름"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 203,
+            "name": "도막분리"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 204,
+            "name": "핀홀"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 205,
+            "name": "균열"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 206,
+            "name": "부풀음"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 207,
+            "name": "이물질포함"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 301,
+            "name": "용접손상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 302,
+            "name": "스크래치"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 303,
+            "name": "도막떨어짐"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 303,
+            "attributes": {
+                "part": "파이프",
+                "quality": "불량품"
+            },
+            "iscrowd": 0,
+            "area": 51063.39,
+            "segmentation": [
+                2050.8,
+                1305.7,
+                1998.7,
+                1361.0,
+                1943.8,
+                1424.0,
+                1953.3,
+                1465.2,
+                1926.1,
+                1514.3,
+                1950.0,
+                1547.8,
+                1999.6,
+                1552.8,
+                2045.5,
+                1535.3,
+                2100.4,
+                1543.4,
+                2144.0,
+                1549.8,
+                2166.6,
+                1504.7,
+                2161.7,
+                1453.0,
+                2184.3,
+                1417.5,
+                2205.3,
+                1333.6,
+                2187.5,
+                1306.2,
+                2155.3,
+                1304.5,
+                2097.2,
+                1290.0
+            ],
+            "bbox": [
+                1926.1,
+                1290.0,
+                279.2,
+                262.8
+            ]
+        }
+    ]
+}

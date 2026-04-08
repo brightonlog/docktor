@@ -1,0 +1,56 @@
+{
+  "description": "Orin Car Inspection System Configuration",
+  "inspection": {
+    "total_length_cm": 180,
+    "zone_length_cm": 30,
+    "zone_types": [
+      "normal",
+      "normal",
+      "anomaly",
+      "defect",
+      "defect",
+      "defect"
+    ]
+  },
+  "motor": {
+    "output": 50,
+    "speed_cm_per_sec": 30.0,
+    "note": "⚠️ IMPORTANT: Run calibration and update speed_cm_per_sec with actual measured value!"
+  },
+  "detection": {
+    "yolo": {
+      "model_path": "best_fixed.pt",
+      "use_tensorrt": true,
+      "tensorrt_path": "best_fixed.engine",
+      "confidence_threshold": 0.5
+    },
+    "anomaly": {
+      "model_path": "anomaly_detection/best_model.pt",
+      "threshold": 0.7,
+      "input_size": [128, 128]
+    }
+  },
+  "camera": {
+    "device": "/dev/video0",
+    "width": 640,
+    "height": 480,
+    "framerate": 30,
+    "use_gstreamer": true
+  },
+  "output": {
+    "results_dir": "inspection_results",
+    "save_images": true,
+    "save_json": true
+  },
+  "web_server": {
+    "host": "0.0.0.0",
+    "port": 5002,
+    "debug": false
+  },
+  "notes": [
+    "1. MUST run calibration first to measure actual motor speed",
+    "2. Update motor.speed_cm_per_sec with calibrated value",
+    "3. Adjust zone_types as needed for your inspection setup",
+    "4. Tune detection thresholds based on your models' performance"
+  ]
+}

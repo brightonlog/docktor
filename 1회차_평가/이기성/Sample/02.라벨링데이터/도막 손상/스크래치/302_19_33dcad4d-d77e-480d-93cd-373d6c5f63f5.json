@@ -1,0 +1,139 @@
+{
+    "info": {
+        "name": "선박 도장 품질 측정 데이터",
+        "url": "miraeit.net/",
+        "description": "선박 도장 품질 측정 데이터",
+        "version": "1.0",
+        "contributor": "미래아이티컨소시엄",
+        "date_created": "2022-12-08"
+    },
+    "images": [
+        {
+            "id": 1,
+            "file_name": "302_19_33dcad4d-d77e-480d-93cd-373d6c5f63f5.jpg",
+            "width": 3024,
+            "height": 4032,
+            "license": 1,
+            "date_captured": "2022-11-27 09:43:06"
+        }
+    ],
+    "licenses": [
+        {
+            "id": 1,
+            "name": "CC BY-NC",
+            "url": "http://creativecommons.org/licenses/by-nc-sa/2.0/"
+        }
+    ],
+    "categories": [
+        {
+            "supercategory": "선박도장",
+            "id": 101,
+            "name": "정상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 201,
+            "name": "워터스포팅"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 202,
+            "name": "흐름"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 203,
+            "name": "도막분리"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 204,
+            "name": "핀홀"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 205,
+            "name": "균열"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 206,
+            "name": "부풀음"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 207,
+            "name": "이물질포함"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 301,
+            "name": "용접손상"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 302,
+            "name": "스크래치"
+        },
+        {
+            "supercategory": "선박도장",
+            "id": 303,
+            "name": "도막떨어짐"
+        }
+    ],
+    "annotations": [
+        {
+            "id": 1,
+            "image_id": 1,
+            "category_id": 302,
+            "attributes": {
+                "part": "엔진커버",
+                "quality": "불량품"
+            },
+            "iscrowd": 0,
+            "area": 308408.93,
+            "segmentation": [
+                0.2,
+                2108.4,
+                0.3,
+                2200.0,
+                373.2,
+                2182.1,
+                736.6,
+                2172.8,
+                1114.7,
+                2146.9,
+                1306.8,
+                2138.1,
+                1541.9,
+                2109.0,
+                2194.0,
+                2024.3,
+                2866.5,
+                1927.0,
+                3023.7,
+                1884.7,
+                3023.9,
+                1786.2,
+                2821.0,
+                1829.7,
+                2588.0,
+                1870.1,
+                2191.5,
+                1925.7,
+                1787.8,
+                1968.8,
+                1224.6,
+                2033.2,
+                712.2,
+                2072.7
+            ],
+            "bbox": [
+                0.2,
+                1786.2,
+                3023.7,
+                413.9
+            ]
+        }
+    ]
+}

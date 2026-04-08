@@ -1,0 +1,38 @@
+pipeline {
+    agent any
+
+    stages {
+        // Git에서 코드 가져오기
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        //  도커 이미지 만들기 (Dockerfile 기준)
+        stage('Docker Image Build') {
+            steps {
+                // 'my-front'라는 이름으로 이미지를 만듭니다.
+                sh 'docker build -t my-front .'
+            }
+        }
+
+        // 컨테이너 실행하기 (배포)
+        stage('Deploy') {
+            steps {
+                script {
+                    // 이미 실행 중인 게 있으면 끄고 다시 켭니다.
+                    try {
+                        sh 'docker stop front-container'
+                        sh 'docker rm front-container'
+                    } catch (e) {
+                        echo "기존에 실행 중인 컨테이너가 없어서 바로 진행합니다."
+                    }
+
+                    // 80포트로 실행
+                    sh 'docker run -d --name front-container -p 80:80 my-front'
+                }
+            }
+        }
+    }
+}

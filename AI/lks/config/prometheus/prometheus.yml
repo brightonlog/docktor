@@ -1,0 +1,28 @@
+# Prometheus Configuration for YOLOv8 Training Monitoring
+
+global:
+  scrape_interval: 5s
+  evaluation_interval: 5s
+  external_labels:
+    monitor: 'yolov8-training'
+
+scrape_configs:
+  # YOLOv8 Training Metrics
+  - job_name: 'yolov8_training'
+    static_configs:
+      - targets: ['host.docker.internal:8000']
+        labels:
+          service: 'yolov8'
+          environment: 'training'
+
+  # Node Exporter (시스템 메트릭)
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
+        labels:
+          service: 'system'
+
+  # Prometheus 자체 메트릭
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']

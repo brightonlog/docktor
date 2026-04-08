@@ -1,0 +1,5 @@
+flask
+flask-cors
+adafruit-circuitpython-pca9685
+adafruit-circuitpython-motor
+RPi.GPIO

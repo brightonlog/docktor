@@ -1,0 +1,24 @@
+# 대용량 데이터셋
+Dataset/
+AIHUB_validation/
+Visualized_Dataset/
+Sample.zip
+
+# Node.js
+node_modules/
+ship-viewer/node_modules/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+ship-viewer/*

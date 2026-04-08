@@ -1,0 +1,62 @@
+{
+  "session_dir": "session_20260127_184906",
+  "timestamp": "2026-01-27T18:49:08.116960",
+  "summary": {
+    "total_images": 3,
+    "defect_count": 1,
+    "anomaly_count": 1,
+    "normal_count": 1,
+    "avg_yolo_inference_ms": 267.9454485575358,
+    "avg_anomaly_inference_ms": 0.05340576171875
+  },
+  "results": [
+    {
+      "image_name": "205_18_4074d942-c4cc-4005-a6cc-5ab6860ef846.jpg",
+      "timestamp": "2026-01-27T18:49:07.203580",
+      "yolo_detections": [],
+      "yolo_inference_ms": 697.2498893737793,
+      "has_defect": false,
+      "anomaly_score": 0.7649475684700693,
+      "anomaly_inference_ms": 0.06747245788574219,
+      "has_anomaly": true,
+      "final_status": "anomaly",
+      "output_image_path": "../pipeline_results/session_20260127_184906/205_18_4074d942-c4cc-4005-a6cc-5ab6860ef846_result.jpg"
+    },
+    {
+      "image_name": "206_16_f512b5cb-6d19-4a56-a951-98bd3c07d9bc.jpg",
+      "timestamp": "2026-01-27T18:49:07.731686",
+      "yolo_detections": [
+        {
+          "class_id": 0,
+          "class_name": "blister",
+          "confidence": 0.8759765625,
+          "bbox": [
+            1715.1749267578125,
+            856.7999877929688,
+            2894.849853515625,
+            2077.4248046875
+          ]
+        }
+      ],
+      "yolo_inference_ms": 74.05447959899902,
+      "has_defect": true,
+      "anomaly_score": 0.0,
+      "anomaly_inference_ms": 0.0,
+      "has_anomaly": false,
+      "final_status": "defect",
+      "output_image_path": "../pipeline_results/session_20260127_184906/206_16_f512b5cb-6d19-4a56-a951-98bd3c07d9bc_result.jpg"
+    },
+    {
+      "image_name": "302_19_33d69445-0003-4726-b182-9680042387ba.jpg",
+      "timestamp": "2026-01-27T18:49:08.112739",
+      "yolo_detections": [],
+      "yolo_inference_ms": 32.5319766998291,
+      "has_defect": false,
+      "anomaly_score": 0.12139920024561623,
+      "anomaly_inference_ms": 0.03933906555175781,
+      "has_anomaly": false,
+      "final_status": "normal",
+      "output_image_path": "../pipeline_results/session_20260127_184906/302_19_33d69445-0003-4726-b182-9680042387ba_result.jpg"
+    }
+  ]
+}

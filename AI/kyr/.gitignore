@@ -1,0 +1,81 @@
+# ===================
+# 데이터셋 (Git 제외)
+# ===================
+/images
+/labels
+/normal_images
+
+# 새 데이터 구조
+/data/raw/
+/data/processed/
+/data/extracted/
+*.zip
+
+# Legacy 데이터 (70GB+)
+/_legacy/data/images/
+/_legacy/data/labels/
+/_legacy/data/normal_images/
+/_legacy/runs/
+
+# ===================
+# 모델 파일
+# ===================
+/models/**/*.pt
+/models/**/*.engine
+/models/**/*.onnx
+
+# ===================
+# 학습 로그 (TensorBoard 등)
+# ===================
+/runs/
+
+# src 폴더 내 실험 파일 제외
+/src/**/runs/
+/src/**/*.db
+/src/**/*.pt
+/src/**/mlruns/
+
+# ===================
+# 실험 결과
+# ===================
+# MLflow - 메타데이터만 포함, 모델 파일 및 이미지 제외
+/experiments/mlruns/**/artifacts/
+!/experiments/mlruns/**/artifacts/args.yaml
+!/experiments/mlruns/**/artifacts/results.csv
+
+# YOLO 학습 결과 - 대용량 이미지와 모델 제외
+/experiments/yolo_runs/**/*.jpg
+/experiments/yolo_runs/**/*.png
+/experiments/yolo_runs/**/weights/
+
+# 기타 실험 결과
+/experiments/runs/
+/experiments/comparison_results/
+/experiments/plots/
+
+# YOLO 데이터셋 (변환된)
+/data/yolo_dataset/
+
+# ===================
+# AI Hub 다운로드 관련
+# ===================
+aihubshell.exe
+convert_aihub_to_yolo.py
+aihub_download/
+aihub_download2/
+
+# ===================
+# Python / 일반
+# ===================
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.egg-info/
+
+# ===================
+# IDE / 기타
+# ===================
+/.github
+.vscode/
+*.log
