@@ -11,3 +11,6 @@ FE/ship-viewer/.next/*
 FE/ship-viewer/next-env.d.ts
 .claude/settings.local.json
 .vscode/settings.json
+*.npz
+*.npz
+*.mp4
