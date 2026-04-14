@@ -101,3 +101,17 @@
 | **LLM 기반 검사 보고서 다운로드** | ![보고서관리](Img%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-02-06%20103108.png) |
 | **LLM 기반 검사 보고서 샘플**   | ![리포트샘플](Img%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-02-06%20103436.png) |
 | **AI 실시간 분석 대시보드**     | ![실시간분석](Img%2F%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7%202026-02-06%20113900.png) |
+
+## 📦 대용량 파일 다운로드
+
+프로젝트 실행에 필요한 대용량 파일은 아래에서 다운로드할 수 있습니다:
+
+### 모델 파일
+- **patchcore_model.npz** (639MB)
+  - 다운로드: [Google Drive 링크](https://drive.google.com/file/d/1NmshdjN9Np2TK3TyRotDcqM9ciCevVYb/view?usp=sharing)
+  - 위치: `Embedded/lks/models/anomaly_detection/patchcore_model.npz`
+
+### 테스트 영상
+- **solidWhiteRight_input.mp4** (73MB)
+  - 위치: `Embedded/yolo_project/Sub2/프로젝트 확장/solidWhiteRight_input.mp4`
+  - *(선택사항) 테스트 영상이 필요한 경우 별도 다운로드*
